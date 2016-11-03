@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xilai.core.dao.TbXilaicoreIkuaidiXilaiorderMapper" >
+  <resultMap id="BaseResultMap" type="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorder" >
+    <id column="serviceCode" property="servicecode" jdbcType="VARCHAR" />
+    <result column="xilaiNO" property="xilaino" jdbcType="VARCHAR" />
+    <result column="sendName" property="sendname" jdbcType="VARCHAR" />
+    <result column="sendPhone" property="sendphone" jdbcType="VARCHAR" />
+    <result column="sendCityCode" property="sendcitycode" jdbcType="INTEGER" />
+    <result column="sendAddress" property="sendaddress" jdbcType="VARCHAR" />
+    <result column="sendAddLon" property="sendaddlon" jdbcType="DOUBLE" />
+    <result column="sendAddLat" property="sendaddlat" jdbcType="DOUBLE" />
+    <result column="sendCardId" property="sendcardid" jdbcType="VARCHAR" />
+    <result column="sendCompany" property="sendcompany" jdbcType="VARCHAR" />
+    <result column="takeName" property="takename" jdbcType="VARCHAR" />
+    <result column="takePhone" property="takephone" jdbcType="VARCHAR" />
+    <result column="takeCityCode" property="takecitycode" jdbcType="INTEGER" />
+    <result column="takeAddress" property="takeaddress" jdbcType="VARCHAR" />
+    <result column="takeAddLon" property="takeaddlon" jdbcType="DOUBLE" />
+    <result column="takeAddLa" property="takeaddla" jdbcType="DOUBLE" />
+    <result column="activityType" property="activitytype" jdbcType="INTEGER" />
+    <result column="sendDate" property="senddate" jdbcType="TIMESTAMP" />
+    <result column="takeDate" property="takedate" jdbcType="TIMESTAMP" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="sourceCode" property="sourcecode" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="isVIP" property="isvip" jdbcType="INTEGER" />
+    <result column="loginUC" property="loginuc" jdbcType="VARCHAR" />
+    <result column="sendCity" property="sendcity" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    serviceCode, xilaiNO, sendName, sendPhone, sendCityCode, sendAddress, sendAddLon, 
+    sendAddLat, sendCardId, sendCompany, takeName, takePhone, takeCityCode, takeAddress, 
+    takeAddLon, takeAddLa, activityType, sendDate, takeDate, source, sourceCode, status, 
+    isVIP, loginUC, sendCity
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_xilaicore_ikuaidi_xilaiorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_xilaicore_ikuaidi_xilaiorder
+    where serviceCode = #{servicecode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_xilaicore_ikuaidi_xilaiorder
+    where serviceCode = #{servicecode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorderExample" >
+    delete from tb_xilaicore_ikuaidi_xilaiorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorder" >
+    insert into tb_xilaicore_ikuaidi_xilaiorder (serviceCode, xilaiNO, sendName, 
+      sendPhone, sendCityCode, sendAddress, 
+      sendAddLon, sendAddLat, sendCardId, 
+      sendCompany, takeName, takePhone, 
+      takeCityCode, takeAddress, takeAddLon, 
+      takeAddLa, activityType, sendDate, 
+      takeDate, source, sourceCode, 
+      status, isVIP, loginUC, 
+      sendCity)
+    values (#{servicecode,jdbcType=VARCHAR}, #{xilaino,jdbcType=VARCHAR}, #{sendname,jdbcType=VARCHAR}, 
+      #{sendphone,jdbcType=VARCHAR}, #{sendcitycode,jdbcType=INTEGER}, #{sendaddress,jdbcType=VARCHAR}, 
+      #{sendaddlon,jdbcType=DOUBLE}, #{sendaddlat,jdbcType=DOUBLE}, #{sendcardid,jdbcType=VARCHAR}, 
+      #{sendcompany,jdbcType=VARCHAR}, #{takename,jdbcType=VARCHAR}, #{takephone,jdbcType=VARCHAR}, 
+      #{takecitycode,jdbcType=INTEGER}, #{takeaddress,jdbcType=VARCHAR}, #{takeaddlon,jdbcType=DOUBLE}, 
+      #{takeaddla,jdbcType=DOUBLE}, #{activitytype,jdbcType=INTEGER}, #{senddate,jdbcType=TIMESTAMP}, 
+      #{takedate,jdbcType=TIMESTAMP}, #{source,jdbcType=VARCHAR}, #{sourcecode,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{isvip,jdbcType=INTEGER}, #{loginuc,jdbcType=VARCHAR}, 
+      #{sendcity,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorder" >
+    insert into tb_xilaicore_ikuaidi_xilaiorder
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="servicecode != null" >
+        serviceCode,
+      </if>
+      <if test="xilaino != null" >
+        xilaiNO,
+      </if>
+      <if test="sendname != null" >
+        sendName,
+      </if>
+      <if test="sendphone != null" >
+        sendPhone,
+      </if>
+      <if test="sendcitycode != null" >
+        sendCityCode,
+      </if>
+      <if test="sendaddress != null" >
+        sendAddress,
+      </if>
+      <if test="sendaddlon != null" >
+        sendAddLon,
+      </if>
+      <if test="sendaddlat != null" >
+        sendAddLat,
+      </if>
+      <if test="sendcardid != null" >
+        sendCardId,
+      </if>
+      <if test="sendcompany != null" >
+        sendCompany,
+      </if>
+      <if test="takename != null" >
+        takeName,
+      </if>
+      <if test="takephone != null" >
+        takePhone,
+      </if>
+      <if test="takecitycode != null" >
+        takeCityCode,
+      </if>
+      <if test="takeaddress != null" >
+        takeAddress,
+      </if>
+      <if test="takeaddlon != null" >
+        takeAddLon,
+      </if>
+      <if test="takeaddla != null" >
+        takeAddLa,
+      </if>
+      <if test="activitytype != null" >
+        activityType,
+      </if>
+      <if test="senddate != null" >
+        sendDate,
+      </if>
+      <if test="takedate != null" >
+        takeDate,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="sourcecode != null" >
+        sourceCode,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="isvip != null" >
+        isVIP,
+      </if>
+      <if test="loginuc != null" >
+        loginUC,
+      </if>
+      <if test="sendcity != null" >
+        sendCity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="servicecode != null" >
+        #{servicecode,jdbcType=VARCHAR},
+      </if>
+      <if test="xilaino != null" >
+        #{xilaino,jdbcType=VARCHAR},
+      </if>
+      <if test="sendname != null" >
+        #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendphone != null" >
+        #{sendphone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcitycode != null" >
+        #{sendcitycode,jdbcType=INTEGER},
+      </if>
+      <if test="sendaddress != null" >
+        #{sendaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendaddlon != null" >
+        #{sendaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="sendaddlat != null" >
+        #{sendaddlat,jdbcType=DOUBLE},
+      </if>
+      <if test="sendcardid != null" >
+        #{sendcardid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcompany != null" >
+        #{sendcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="takename != null" >
+        #{takename,jdbcType=VARCHAR},
+      </if>
+      <if test="takephone != null" >
+        #{takephone,jdbcType=VARCHAR},
+      </if>
+      <if test="takecitycode != null" >
+        #{takecitycode,jdbcType=INTEGER},
+      </if>
+      <if test="takeaddress != null" >
+        #{takeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="takeaddlon != null" >
+        #{takeaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="takeaddla != null" >
+        #{takeaddla,jdbcType=DOUBLE},
+      </if>
+      <if test="activitytype != null" >
+        #{activitytype,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null" >
+        #{senddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takedate != null" >
+        #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcecode != null" >
+        #{sourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isvip != null" >
+        #{isvip,jdbcType=INTEGER},
+      </if>
+      <if test="loginuc != null" >
+        #{loginuc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcity != null" >
+        #{sendcity,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorderExample" resultType="java.lang.Integer" >
+    select count(*) from tb_xilaicore_ikuaidi_xilaiorder
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update tb_xilaicore_ikuaidi_xilaiorder
+    <set >
+      <if test="record.servicecode != null" >
+        serviceCode = #{record.servicecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xilaino != null" >
+        xilaiNO = #{record.xilaino,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendname != null" >
+        sendName = #{record.sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendphone != null" >
+        sendPhone = #{record.sendphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendcitycode != null" >
+        sendCityCode = #{record.sendcitycode,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendaddress != null" >
+        sendAddress = #{record.sendaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendaddlon != null" >
+        sendAddLon = #{record.sendaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sendaddlat != null" >
+        sendAddLat = #{record.sendaddlat,jdbcType=DOUBLE},
+      </if>
+      <if test="record.sendcardid != null" >
+        sendCardId = #{record.sendcardid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendcompany != null" >
+        sendCompany = #{record.sendcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takename != null" >
+        takeName = #{record.takename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takephone != null" >
+        takePhone = #{record.takephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takecitycode != null" >
+        takeCityCode = #{record.takecitycode,jdbcType=INTEGER},
+      </if>
+      <if test="record.takeaddress != null" >
+        takeAddress = #{record.takeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takeaddlon != null" >
+        takeAddLon = #{record.takeaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="record.takeaddla != null" >
+        takeAddLa = #{record.takeaddla,jdbcType=DOUBLE},
+      </if>
+      <if test="record.activitytype != null" >
+        activityType = #{record.activitytype,jdbcType=INTEGER},
+      </if>
+      <if test="record.senddate != null" >
+        sendDate = #{record.senddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.takedate != null" >
+        takeDate = #{record.takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.source != null" >
+        source = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourcecode != null" >
+        sourceCode = #{record.sourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=INTEGER},
+      </if>
+      <if test="record.isvip != null" >
+        isVIP = #{record.isvip,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginuc != null" >
+        loginUC = #{record.loginuc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendcity != null" >
+        sendCity = #{record.sendcity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update tb_xilaicore_ikuaidi_xilaiorder
+    set serviceCode = #{record.servicecode,jdbcType=VARCHAR},
+      xilaiNO = #{record.xilaino,jdbcType=VARCHAR},
+      sendName = #{record.sendname,jdbcType=VARCHAR},
+      sendPhone = #{record.sendphone,jdbcType=VARCHAR},
+      sendCityCode = #{record.sendcitycode,jdbcType=INTEGER},
+      sendAddress = #{record.sendaddress,jdbcType=VARCHAR},
+      sendAddLon = #{record.sendaddlon,jdbcType=DOUBLE},
+      sendAddLat = #{record.sendaddlat,jdbcType=DOUBLE},
+      sendCardId = #{record.sendcardid,jdbcType=VARCHAR},
+      sendCompany = #{record.sendcompany,jdbcType=VARCHAR},
+      takeName = #{record.takename,jdbcType=VARCHAR},
+      takePhone = #{record.takephone,jdbcType=VARCHAR},
+      takeCityCode = #{record.takecitycode,jdbcType=INTEGER},
+      takeAddress = #{record.takeaddress,jdbcType=VARCHAR},
+      takeAddLon = #{record.takeaddlon,jdbcType=DOUBLE},
+      takeAddLa = #{record.takeaddla,jdbcType=DOUBLE},
+      activityType = #{record.activitytype,jdbcType=INTEGER},
+      sendDate = #{record.senddate,jdbcType=TIMESTAMP},
+      takeDate = #{record.takedate,jdbcType=TIMESTAMP},
+      source = #{record.source,jdbcType=VARCHAR},
+      sourceCode = #{record.sourcecode,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=INTEGER},
+      isVIP = #{record.isvip,jdbcType=INTEGER},
+      loginUC = #{record.loginuc,jdbcType=VARCHAR},
+      sendCity = #{record.sendcity,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorder" >
+    update tb_xilaicore_ikuaidi_xilaiorder
+    <set >
+      <if test="xilaino != null" >
+        xilaiNO = #{xilaino,jdbcType=VARCHAR},
+      </if>
+      <if test="sendname != null" >
+        sendName = #{sendname,jdbcType=VARCHAR},
+      </if>
+      <if test="sendphone != null" >
+        sendPhone = #{sendphone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcitycode != null" >
+        sendCityCode = #{sendcitycode,jdbcType=INTEGER},
+      </if>
+      <if test="sendaddress != null" >
+        sendAddress = #{sendaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendaddlon != null" >
+        sendAddLon = #{sendaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="sendaddlat != null" >
+        sendAddLat = #{sendaddlat,jdbcType=DOUBLE},
+      </if>
+      <if test="sendcardid != null" >
+        sendCardId = #{sendcardid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcompany != null" >
+        sendCompany = #{sendcompany,jdbcType=VARCHAR},
+      </if>
+      <if test="takename != null" >
+        takeName = #{takename,jdbcType=VARCHAR},
+      </if>
+      <if test="takephone != null" >
+        takePhone = #{takephone,jdbcType=VARCHAR},
+      </if>
+      <if test="takecitycode != null" >
+        takeCityCode = #{takecitycode,jdbcType=INTEGER},
+      </if>
+      <if test="takeaddress != null" >
+        takeAddress = #{takeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="takeaddlon != null" >
+        takeAddLon = #{takeaddlon,jdbcType=DOUBLE},
+      </if>
+      <if test="takeaddla != null" >
+        takeAddLa = #{takeaddla,jdbcType=DOUBLE},
+      </if>
+      <if test="activitytype != null" >
+        activityType = #{activitytype,jdbcType=INTEGER},
+      </if>
+      <if test="senddate != null" >
+        sendDate = #{senddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="takedate != null" >
+        takeDate = #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcecode != null" >
+        sourceCode = #{sourcecode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isvip != null" >
+        isVIP = #{isvip,jdbcType=INTEGER},
+      </if>
+      <if test="loginuc != null" >
+        loginUC = #{loginuc,jdbcType=VARCHAR},
+      </if>
+      <if test="sendcity != null" >
+        sendCity = #{sendcity,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where serviceCode = #{servicecode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiXilaiorder" >
+    update tb_xilaicore_ikuaidi_xilaiorder
+    set xilaiNO = #{xilaino,jdbcType=VARCHAR},
+      sendName = #{sendname,jdbcType=VARCHAR},
+      sendPhone = #{sendphone,jdbcType=VARCHAR},
+      sendCityCode = #{sendcitycode,jdbcType=INTEGER},
+      sendAddress = #{sendaddress,jdbcType=VARCHAR},
+      sendAddLon = #{sendaddlon,jdbcType=DOUBLE},
+      sendAddLat = #{sendaddlat,jdbcType=DOUBLE},
+      sendCardId = #{sendcardid,jdbcType=VARCHAR},
+      sendCompany = #{sendcompany,jdbcType=VARCHAR},
+      takeName = #{takename,jdbcType=VARCHAR},
+      takePhone = #{takephone,jdbcType=VARCHAR},
+      takeCityCode = #{takecitycode,jdbcType=INTEGER},
+      takeAddress = #{takeaddress,jdbcType=VARCHAR},
+      takeAddLon = #{takeaddlon,jdbcType=DOUBLE},
+      takeAddLa = #{takeaddla,jdbcType=DOUBLE},
+      activityType = #{activitytype,jdbcType=INTEGER},
+      sendDate = #{senddate,jdbcType=TIMESTAMP},
+      takeDate = #{takedate,jdbcType=TIMESTAMP},
+      source = #{source,jdbcType=VARCHAR},
+      sourceCode = #{sourcecode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      isVIP = #{isvip,jdbcType=INTEGER},
+      loginUC = #{loginuc,jdbcType=VARCHAR},
+      sendCity = #{sendcity,jdbcType=VARCHAR}
+    where serviceCode = #{servicecode,jdbcType=VARCHAR}
+  </update>
+</mapper>

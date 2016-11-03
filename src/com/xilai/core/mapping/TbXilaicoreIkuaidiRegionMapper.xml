@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xilai.core.dao.TbXilaicoreIkuaidiRegionMapper" >
+  <resultMap id="BaseResultMap" type="com.xilai.core.entity.TbXilaicoreIkuaidiRegion" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+    <result column="shortName" property="shortname" jdbcType="VARCHAR" />
+    <result column="levelType" property="leveltype" jdbcType="INTEGER" />
+    <result column="cityCode" property="citycode" jdbcType="VARCHAR" />
+    <result column="zipCode" property="zipcode" jdbcType="VARCHAR" />
+    <result column="mergerName" property="mergername" jdbcType="VARCHAR" />
+    <result column="lng" property="lng" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+    <result column="isTongCheng" property="istongcheng" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, name, parentId, shortName, levelType, cityCode, zipCode, mergerName, lng, lat, 
+    pinyin, isTongCheng
+  </sql>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_xilaicore_ikuaidi_region
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_xilaicore_ikuaidi_region
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+ 
+  <insert id="insertSelective" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiRegion" >
+    insert into tb_xilaicore_ikuaidi_region
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+      <if test="shortname != null" >
+        shortName,
+      </if>
+      <if test="leveltype != null" >
+        levelType,
+      </if>
+      <if test="citycode != null" >
+        cityCode,
+      </if>
+      <if test="zipcode != null" >
+        zipCode,
+      </if>
+      <if test="mergername != null" >
+        mergerName,
+      </if>
+      <if test="lng != null" >
+        lng,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="pinyin != null" >
+        pinyin,
+      </if>
+      <if test="istongcheng != null" >
+        isTongCheng,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null" >
+        #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="pinyin != null" >
+        #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="istongcheng != null" >
+        #{istongcheng,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.xilai.core.entity.TbXilaicoreIkuaidiRegion" >
+    update tb_xilaicore_ikuaidi_region
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="shortname != null" >
+        shortName = #{shortname,jdbcType=VARCHAR},
+      </if>
+      <if test="leveltype != null" >
+        levelType = #{leveltype,jdbcType=INTEGER},
+      </if>
+      <if test="citycode != null" >
+        cityCode = #{citycode,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        zipCode = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="mergername != null" >
+        mergerName = #{mergername,jdbcType=VARCHAR},
+      </if>
+      <if test="lng != null" >
+        lng = #{lng,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="pinyin != null" >
+        pinyin = #{pinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="istongcheng != null" >
+        isTongCheng = #{istongcheng,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectCityCodeBymergername" resultType="java.lang.Integer" parameterType="java.lang.String">
+		select
+		ID
+		from tb_xilaicore_ikuaidi_region
+		where MergerName = #{mergername,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>
